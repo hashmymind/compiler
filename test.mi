@@ -1,1 +1,6 @@
-isad_4323
+(* Hello World Example *)
+module HelloWorld
+begin
+  // Print text to the console
+  print ("Hello World");
+end HelloWorld.

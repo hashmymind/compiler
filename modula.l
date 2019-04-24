@@ -1,18 +1,31 @@
 %{
 /* to define functions and enumerate type of token */
 #include "modula.h"
+int lineCount = 0;
+char* lineBuf[LineBufSize];
 %}
+
+letter [a-zA-Z_]
 digit [0-9]
-letter [a-zA-z_]
-id ^{letter}[{letter}|{digit}]+?
-string "\""[^("\n)]+"\""
+id {letter}({letter}|{digit})*
+
 %%
  
-[ \t\n] ;
-{id}		{ printf("Identifier\n");}
-{string} 	{ printf("constant string\n");}
-. 		{ printf("Unexpected shit\n");}
+[\n] 	{
+		lineCount +=1;
+		printf("%d: %s\n",lineCount,lineBuf);
+		memset(lineBuf,0,LineBufSize);
+	}
+module 	{
+		printf("<MODULE>\n");
+		RECORD(yytext);
+	}
+{id} 	{
+		printf("<%s>\n",yytext);
+		RECORD(yytext);
+	}
 
+. {RECORD(yytext);}
 %%
 
 int main(){

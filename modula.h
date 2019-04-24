@@ -1,7 +1,11 @@
 /* we define functions and token types here */
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define LineBufSize 1000
 enum{
-	NO = 0
+	NormalState = 0,
+	CommentState
 };
 
 /* Create a symbol table. */
@@ -12,4 +16,10 @@ int lookup(char*);
 int insert(char*);
 /* Dumps all entries of the symbol table. returns index of the entry. */
 void dump();
+
+/* define marco */
+
+#define RECORD(text) ( \
+		strcat(lineBuf,text)\
+		)
 
