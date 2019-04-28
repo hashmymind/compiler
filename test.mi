@@ -2,5 +2,6 @@
 module HelloWorld
 begin
   // Print text to the console
+  a = 1 + 1.1
   print ("Hello World");
 end HelloWorld.
