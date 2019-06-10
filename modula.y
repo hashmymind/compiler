@@ -448,9 +448,11 @@ cond: IF '(' expr ')' THEN
 
 opt_else: ELSE {
     genElseSec();
+    genNop();
 } opt_stmts
 | {
     genElseSec();
+    genNop();
 };
 
 loop: WHILE
