@@ -1,0 +1,15 @@
+module Example
+const a = 5;
+var c: integer;
+procedure add(a:integer, b:integer) : integer
+begin
+  return a+b;
+end add;
+begin
+  c := add(a, 10);
+  while (c>0) do
+    c := c-1;
+    println c;
+  end;
+  println "Hello World";
+end Example.

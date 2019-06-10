@@ -18,27 +18,26 @@ sipush 5
 sipush 10
 invokestatic int Example.add(int, int)
 putstatic int Example.c
+getstatic int Example.c
+sipush 10
+isub
+ifgt L_0
+iconst_0
+goto L_1
 L_0:
-getstatic int Example.c
-sipush 0
-isub
-ifgt L_2
-iconst_0
-goto L_3
-L_2:
 iconst_1
-L_3:
-iconst_0
-ifeq L_1
-getstatic int Example.c
-sipush 1
-isub
-putstatic int Example.c
+L_1:
+ifeq L_2
 getstatic java.io.PrintStream java.lang.System.out
 getstatic int Example.c
-invokevirtual void java.io.PrintStream.println(int)
-goto L_0
-L_1:
+ineg
+invokevirtual void java.io.PrintStream.print(int)
+goto L_3
+L_2:
+getstatic java.io.PrintStream java.lang.System.out
+getstatic int Example.c
+invokevirtual void java.io.PrintStream.print(int)
+L_3:
 getstatic java.io.PrintStream java.lang.System.out
 ldc "Hello World"
 invokevirtual void java.io.PrintStream.println(java.lang.String)
