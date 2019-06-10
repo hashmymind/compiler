@@ -556,12 +556,12 @@ static const yytype_uint16 yyrline[] =
      193,   197,   201,   205,   210,   219,   228,   237,   246,   255,
      266,   277,   292,   303,   314,   329,   344,   359,   371,   384,
      389,   400,   408,   419,   430,   438,   441,   437,   449,   449,
-     452,   457,   460,   456,   467,   471,   474,   479,   482,   486,
-     490,   495,   496,   500,   512,   516,   521,   525,   534,   542,
-     551,   561,   568,   575,   585,   590,   591,   596,   597,   608,
-     615,   624,   630,   629,   638,   637,   644,   648,   655,   661,
-     669,   674,   679,   684,   689,   694,   699,   718,   734,   739,
-     743,   748
+     453,   459,   462,   458,   469,   473,   476,   481,   484,   488,
+     492,   497,   498,   502,   514,   518,   523,   527,   536,   544,
+     553,   563,   570,   577,   587,   592,   593,   598,   599,   610,
+     617,   626,   632,   631,   640,   639,   646,   650,   657,   663,
+     671,   676,   681,   686,   691,   696,   701,   720,   736,   741,
+     745,   750
 };
 #endif
 
@@ -1707,7 +1707,7 @@ yyreduce:
     if(*(yyvsp[(2) - (11)].string_val)!= *(yyvsp[(10) - (11)].string_val))yyerror("[Error]Moudle id  dosn't consist");
     /* set type */
     Trace("Derived program");
-    cout << "\033[1;35m" << "** program completed ** generate a.jasm" << "\033[0m" << endl;
+    cout << "\033[1;35m" << "** program completed ** generated a.jasm" << "\033[0m" << endl;
     pop();
 
     // main need a return
@@ -2215,32 +2215,34 @@ yyreduce:
 #line 449 "modula.y"
     {
     genElseSec();
+    genNOP();
 ;}
     break;
 
   case 50:
-#line 452 "modula.y"
+#line 453 "modula.y"
     {
-
+    genElseSec();
+    genNOP();
 ;}
     break;
 
   case 51:
-#line 457 "modula.y"
+#line 459 "modula.y"
     {
     genLoopStart();
 ;}
     break;
 
   case 52:
-#line 460 "modula.y"
+#line 462 "modula.y"
     {
     genLoopBodyStart();
 ;}
     break;
 
   case 53:
-#line 463 "modula.y"
+#line 465 "modula.y"
     {
     Trace("Derived loop");
     genLoopEnd();
@@ -2248,67 +2250,67 @@ yyreduce:
     break;
 
   case 54:
-#line 468 "modula.y"
+#line 470 "modula.y"
     {
 
 ;}
     break;
 
   case 55:
-#line 472 "modula.y"
+#line 474 "modula.y"
     {
 ;}
     break;
 
   case 56:
-#line 475 "modula.y"
+#line 477 "modula.y"
     {
 
 ;}
     break;
 
   case 57:
-#line 479 "modula.y"
+#line 481 "modula.y"
     {
 
 ;}
     break;
 
   case 58:
-#line 483 "modula.y"
+#line 485 "modula.y"
     {
     Trace("optional variable and const define A");
 ;}
     break;
 
   case 59:
-#line 487 "modula.y"
+#line 489 "modula.y"
     {
     Trace("optional variable and const define B");
 ;}
     break;
 
   case 60:
-#line 491 "modula.y"
+#line 493 "modula.y"
     {
     Trace("optional variable and const define C");
 ;}
     break;
 
   case 61:
-#line 495 "modula.y"
+#line 497 "modula.y"
     {;}
     break;
 
   case 62:
-#line 497 "modula.y"
+#line 499 "modula.y"
     {
     Trace("Derived variable define");
 ;}
     break;
 
   case 63:
-#line 501 "modula.y"
+#line 503 "modula.y"
     {
     /* assign type */
     for(int i=0;i<id_name_list.size();++i){
@@ -2323,28 +2325,28 @@ yyreduce:
     break;
 
   case 64:
-#line 513 "modula.y"
+#line 515 "modula.y"
     {
 
 ;}
     break;
 
   case 65:
-#line 517 "modula.y"
+#line 519 "modula.y"
     {
 
 ;}
     break;
 
   case 66:
-#line 521 "modula.y"
+#line 523 "modula.y"
     {
 
 ;}
     break;
 
   case 67:
-#line 526 "modula.y"
+#line 528 "modula.y"
     {
     Trace("expr <- const_int");
     Identifier* info = new Identifier();
@@ -2356,7 +2358,7 @@ yyreduce:
     break;
 
   case 68:
-#line 535 "modula.y"
+#line 537 "modula.y"
     {
     Trace("expr <- const_real");
     Identifier* info = new Identifier();
@@ -2367,7 +2369,7 @@ yyreduce:
     break;
 
   case 69:
-#line 543 "modula.y"
+#line 545 "modula.y"
     {
     Trace("expr <- const_str");
     Identifier* info = new Identifier();
@@ -2379,7 +2381,7 @@ yyreduce:
     break;
 
   case 70:
-#line 552 "modula.y"
+#line 554 "modula.y"
     {
     Trace("expr <- const_bool");
     Identifier* info = new Identifier();
@@ -2391,7 +2393,7 @@ yyreduce:
     break;
 
   case 71:
-#line 562 "modula.y"
+#line 564 "modula.y"
     {
     Trace("Derived const define");
     if(insert(*(yyvsp[(2) - (5)].string_val))==-1) yyerror("[Error]Redefine symbol in same scope");
@@ -2401,7 +2403,7 @@ yyreduce:
     break;
 
   case 72:
-#line 569 "modula.y"
+#line 571 "modula.y"
     {
     Trace("const_def <- const_def ID = expr;");
     if(insert(*(yyvsp[(2) - (5)].string_val))==-1) yyerror("[Error]Redefine symbol in same scope");
@@ -2411,7 +2413,7 @@ yyreduce:
     break;
 
   case 73:
-#line 576 "modula.y"
+#line 578 "modula.y"
     {
     for(int i=0;i<id_name_list.size();++i){
 
@@ -2424,31 +2426,31 @@ yyreduce:
     break;
 
   case 74:
-#line 586 "modula.y"
+#line 588 "modula.y"
     {
     Trace("Derived procedures defines");
 ;}
     break;
 
   case 75:
-#line 590 "modula.y"
+#line 592 "modula.y"
     {;}
     break;
 
   case 76:
-#line 592 "modula.y"
+#line 594 "modula.y"
     {
     Trace("Derived statements");
 ;}
     break;
 
   case 77:
-#line 596 "modula.y"
+#line 598 "modula.y"
     {;}
     break;
 
   case 78:
-#line 598 "modula.y"
+#line 600 "modula.y"
     {
     if(id_type_list == nullptr){
         id_type_list = new vector<int>();
@@ -2462,7 +2464,7 @@ yyreduce:
     break;
 
   case 79:
-#line 609 "modula.y"
+#line 611 "modula.y"
     {
     if(insert(*(yyvsp[(3) - (5)].string_val))==-1) yyerror("[Error]Redefine symbol in same scope");
     set_type(*(yyvsp[(3) - (5)].string_val),para_type,(yyvsp[(5) - (5)].int_val));
@@ -2472,7 +2474,7 @@ yyreduce:
     break;
 
   case 80:
-#line 616 "modula.y"
+#line 618 "modula.y"
     {
     Trace("Derived variable assignment");
     /* check */
@@ -2484,7 +2486,7 @@ yyreduce:
     break;
 
   case 81:
-#line 625 "modula.y"
+#line 627 "modula.y"
     {
     Trace("arr_assign <- arr_item = expr");
     if((yyvsp[(1) - (4)].id_info)->val_type != (yyvsp[(3) - (4)].id_info)->val_type) yyerror("[Error]Can't assign");
@@ -2492,14 +2494,14 @@ yyreduce:
     break;
 
   case 82:
-#line 630 "modula.y"
+#line 632 "modula.y"
     {
     genPrintStart();
 ;}
     break;
 
   case 83:
-#line 633 "modula.y"
+#line 635 "modula.y"
     {
     Trace("command <- print expression");
     genPrint((yyvsp[(3) - (4)].id_info)->val_type);
@@ -2507,28 +2509,28 @@ yyreduce:
     break;
 
   case 84:
-#line 638 "modula.y"
+#line 640 "modula.y"
     {
     genPrintStart();
 ;}
     break;
 
   case 85:
-#line 641 "modula.y"
+#line 643 "modula.y"
     {
     genPrintln((yyvsp[(3) - (4)].id_info)->val_type);
 ;}
     break;
 
   case 86:
-#line 645 "modula.y"
+#line 647 "modula.y"
     {
 
 ;}
     break;
 
   case 87:
-#line 649 "modula.y"
+#line 651 "modula.y"
     {
     /* check return type */
     if(func_return_stack.back() != void_type) yyerror("[Error]wrong return type");
@@ -2538,7 +2540,7 @@ yyreduce:
     break;
 
   case 88:
-#line 656 "modula.y"
+#line 658 "modula.y"
     {
     if(func_return_stack.back() != (yyvsp[(2) - (3)].id_info)->val_type) yyerror("[Error]wrong return type");
 
@@ -2547,7 +2549,7 @@ yyreduce:
     break;
 
   case 89:
-#line 662 "modula.y"
+#line 664 "modula.y"
     {
     Trace("arr_item <- id[arit_expr]");
     if(lookup(*(yyvsp[(1) - (4)].string_val))==-1) yyerror("[Error]Undefined symbol");
@@ -2558,7 +2560,7 @@ yyreduce:
     break;
 
   case 90:
-#line 670 "modula.y"
+#line 672 "modula.y"
     {
     Trace("type <- int_type");
     (yyval.int_val) = val_int;
@@ -2566,7 +2568,7 @@ yyreduce:
     break;
 
   case 91:
-#line 675 "modula.y"
+#line 677 "modula.y"
     {
     Trace("type <- real_type");
     (yyval.int_val) = val_real;
@@ -2574,7 +2576,7 @@ yyreduce:
     break;
 
   case 92:
-#line 680 "modula.y"
+#line 682 "modula.y"
     {
     Trace("type <- str_type");
     (yyval.int_val) = val_str;
@@ -2582,7 +2584,7 @@ yyreduce:
     break;
 
   case 93:
-#line 685 "modula.y"
+#line 687 "modula.y"
     {
     Trace("type <- bool_type");
     (yyval.int_val) = val_bool;
@@ -2590,7 +2592,7 @@ yyreduce:
     break;
 
   case 94:
-#line 690 "modula.y"
+#line 692 "modula.y"
     {
     id_name_list.push_back(*(yyvsp[(1) - (3)].string_val));
     Trace("ids <- ids ID");
@@ -2598,7 +2600,7 @@ yyreduce:
     break;
 
   case 95:
-#line 695 "modula.y"
+#line 697 "modula.y"
     {
     id_name_list.push_back(*(yyvsp[(1) - (1)].string_val));
     Trace("ids <- ID");
@@ -2606,7 +2608,7 @@ yyreduce:
     break;
 
   case 96:
-#line 700 "modula.y"
+#line 702 "modula.y"
     {
     Trace("Derive fun invo");
     /* check */
@@ -2628,7 +2630,7 @@ yyreduce:
     break;
 
   case 97:
-#line 719 "modula.y"
+#line 721 "modula.y"
     {
     /* check */
     if(lookup(*(yyvsp[(1) - (5)].string_val))==-1)yyerror("Not defined var");
@@ -2646,21 +2648,21 @@ yyreduce:
     break;
 
   case 98:
-#line 735 "modula.y"
+#line 737 "modula.y"
     {
 
 ;}
     break;
 
   case 99:
-#line 739 "modula.y"
+#line 741 "modula.y"
     {
 
 ;}
     break;
 
   case 100:
-#line 744 "modula.y"
+#line 746 "modula.y"
     {
     invo_type_list->push_back((yyvsp[(3) - (3)].id_info)->val_type);
     Trace("exprs <- expr,expr");
@@ -2668,7 +2670,7 @@ yyreduce:
     break;
 
   case 101:
-#line 749 "modula.y"
+#line 751 "modula.y"
     {
     if(invo_type_list == nullptr)
         invo_type_list = new vector<int>();
@@ -2678,7 +2680,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 2682 "y.tab.cpp"
+#line 2684 "y.tab.cpp"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2892,7 +2894,7 @@ yyreturn:
 }
 
 
-#line 755 "modula.y"
+#line 757 "modula.y"
 
 
 void yyerror(const char *s) {

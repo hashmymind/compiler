@@ -2,3 +2,12 @@ Compile:
  make
 Run:
  ./a.out < example.mi
+ ./javaa a.jasm
+ java Example
+ (Example is module name)
+
+ What changes
+ * Adding value tracking on const to symbol tabel
+ * Complete code generation program, code.hpp code.cpp and work wiht yacc
+ * insert code generating function to yacc
+ * not outputting TRACE

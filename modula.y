@@ -78,7 +78,7 @@ program: MODULE ID
     if(*$2!= *$10)yyerror("[Error]Moudle id  dosn't consist");
     /* set type */
     Trace("Derived program");
-    cout << "\033[1;35m" << "** program completed ** generate a.jasm" << "\033[0m" << endl;
+    cout << "\033[1;35m" << "** program completed ** generated a.jasm" << "\033[0m" << endl;
     pop();
 
     // main need a return
