@@ -455,7 +455,7 @@ opt_else: ELSE {
 
 loop: WHILE
 {
-    genLoopEnd();
+    genLoopStart();
 } '(' expr ')'
 {
     genLoopBodyStart();

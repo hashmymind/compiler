@@ -2228,7 +2228,7 @@ yyreduce:
   case 51:
 #line 457 "modula.y"
     {
-    genLoopEnd();
+    genLoopStart();
 ;}
     break;
 

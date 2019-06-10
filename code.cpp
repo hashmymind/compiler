@@ -149,7 +149,6 @@ void genIfSec(){
     string l_exit = get_label();
     label_stack.push_back(l_exit);
     label_stack.push_back(l_else);
-    out << "iconst_0" << endl;
     out << "ifeq " << *(label_stack.end()-1) << endl;
 }
 
