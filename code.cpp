@@ -186,7 +186,7 @@ void genLoopEnd(){
 
 void genProcStart(Identifier id){
     // only consider int
-    out << "method public static int add(";
+    out << "method public static int " << id.name << "(";
     if(id.data.arg_info != nullptr){
         for(int i=0;i< id.data.arg_info->size();++i){
             if(i)
@@ -212,7 +212,7 @@ void genRet(bool t){
 }
 
 void genProcInvo(Identifier id){
-    out << "invokestatic int " << ModuleName << ".add(";
+    out << "invokestatic int " << ModuleName << "." << id.name << "(";
     for(int i=0;i< (id.data.arg_info->size());++i){
         if(i)
             out << ", ";

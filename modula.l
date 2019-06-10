@@ -45,7 +45,6 @@ comment \/\/[^\n]*
 <CMT>. {RECORD(yytext);};
 <CMT>\n {
     lineCount +=1;
-    printf("(#%d): %s\n",lineCount,lineBuf);
     memset(lineBuf,0,LineBufSize);
 }
 {string} {	
