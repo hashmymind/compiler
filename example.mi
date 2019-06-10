@@ -1,16 +1,28 @@
-module Example
-const a = 5;
-var c: integer;
-procedure add(a:integer, b:integer) : integer
+(* fib.modula
+ *
+ * This test program computes the Nth Fibonacci number
+ *)
+
+module fib
+
+    // variables
+    var n, Fn, FNminus1, temp: integer;
+
 begin
-  return a+b;
-end add;
-begin
-  c := add(a, 10);
-  if (c > 10) then
-    print -c;
-  else
-    print c; 
-  end;
-  println "Hello World";
-end Example.
+    // variable initialization
+    n := 8;
+    Fn := 1;
+    FNminus1 := 1;
+    
+    // compute the nth Fibonacci number
+    while (n > 2) do
+      temp := Fn;
+      Fn := Fn + FNminus1;
+      FNminus1 := temp;
+      n := n - 1;
+    end;
+    
+    // print result
+    print "Result of computation: ";
+    println n;
+end fib.

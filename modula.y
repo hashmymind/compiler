@@ -450,7 +450,7 @@ opt_else: ELSE {
     genElseSec();
 } opt_stmts
 | {
-
+    genElseSec();
 };
 
 loop: WHILE

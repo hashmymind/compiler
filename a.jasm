@@ -1,46 +1,50 @@
-class Example
+class fib
 {
-field static int c
-method public static int add(int, int)
-max_stack 15
-max_locals 15
-{
-iload 0
-iload 1
-iadd
-ireturn
-}
+field static int temp
+field static int FNminus1
+field static int Fn
+field static int n
 method public static void main(java.lang.String[])
 max_stack 15
 max_locals 15
 {
-sipush 5
-sipush 10
-invokestatic int Example.add(int, int)
-putstatic int Example.c
-getstatic int Example.c
-sipush 10
-isub
-ifgt L_0
-iconst_0
-goto L_1
+sipush 8
+putstatic int fib.n
+sipush 1
+putstatic int fib.Fn
+sipush 1
+putstatic int fib.FNminus1
 L_0:
-iconst_1
-L_1:
-ifeq L_2
-getstatic java.io.PrintStream java.lang.System.out
-getstatic int Example.c
-ineg
-invokevirtual void java.io.PrintStream.print(int)
+getstatic int fib.n
+sipush 2
+isub
+ifgt L_2
+iconst_0
 goto L_3
 L_2:
-getstatic java.io.PrintStream java.lang.System.out
-getstatic int Example.c
-invokevirtual void java.io.PrintStream.print(int)
+iconst_1
 L_3:
+ifeq L_1
+getstatic int fib.Fn
+putstatic int fib.temp
+getstatic int fib.Fn
+getstatic int fib.FNminus1
+iadd
+putstatic int fib.Fn
+getstatic int fib.temp
+putstatic int fib.FNminus1
+getstatic int fib.n
+sipush 1
+isub
+putstatic int fib.n
+goto L_0
+L_1:
 getstatic java.io.PrintStream java.lang.System.out
-ldc "Hello World"
-invokevirtual void java.io.PrintStream.println(java.lang.String)
+ldc "Result of computation: "
+invokevirtual void java.io.PrintStream.print(java.lang.String)
+getstatic java.io.PrintStream java.lang.System.out
+getstatic int fib.n
+invokevirtual void java.io.PrintStream.println(int)
 return
 }
 }
