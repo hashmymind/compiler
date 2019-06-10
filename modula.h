@@ -1,64 +1,56 @@
+#pragma once
 /* we define functions and token types here */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <map>
+#include <string>
+#include <iostream>
+#include "y.tab.hpp"
 #define LineBufSize 1000
 #define MaxIdLen 20
+using namespace std;
 
-enum{
-	NormalState = 0,
-	CommentState
-};
 
-typedef struct Symbol{
-	int id;
-	char name[MaxIdLen];
-	struct Symbol* next;
-} Symbol;
-
-/* initialize symbol table */
-Symbol* head;
-Symbol* tail;
-
-/* Create a symbol table. */
-void create(){
-	head = (Symbol*)malloc(sizeof(Symbol));
-	head->id=-1;
-	head->next = NULL;
-	tail = head;
+/* inital keyword map */
+map<string, int> token_map;
+int token_inited = 0;
+void init_token_map(){
+    token_map["<="] = LET;
+    token_map[">="] = BET;
+    token_map["<>"] = NE;
+    token_map["&&"] = AND;
+    token_map["||"] = OR;
+    token_map[":="] = ASS;
+    token_map["begin"] = _BEGIN;
+    token_map["end"] = END;
+    token_map["module"] = MODULE;
+    token_map["procedure"] = PROCEDURE;
+    token_map["if"] = IF;
+    token_map["then"] = THEN;
+    token_map["else"] = ELSE;
+    token_map["while"] = WHILE;
+    token_map["do"] = DO;
+    token_map["var"] = VAR;
+    token_map["const"] = CONST;
+    token_map["array"] = ARRAY;
+    token_map["of"] = OF;
+    token_map["print"] = PRINT;
+    token_map["println"] = PRINTLN;
+    token_map["integer"] = INT_TYPE;
+    token_map["real"] = REAL_TYPE;
+    token_map["string"] = STR_TYPE;
+    token_map["boolean"] = BOOL_TYPE;
+    token_map["return"] = _RETURN;
+    token_map["continue"] = CONTINUE;
+    token_map["break"] = BREAK;
+    token_inited = 1;
 }
-/* Returns index of the entry for string s, or nil if s is not found. */
-int lookup(char* name){
-	/* loop through all symbol and compare for its name */
-	Symbol* iter = head->next;
-	while(iter != NULL){
-		if(strcmp(iter->name,name)==0)
-			return iter->id;
-		iter = iter->next;
-	}
-	return -1;
-}
-/* Inserts s into a new entry of the symbol table and returns index of the entry. */
-int insert(char* name){
-	/* check dup */
-	int check_id = lookup(name);
-	if(check_id != -1)
-		return check_id;
 
-	int new_id = tail->id + 1;
-	Symbol* new_symbol = (Symbol*)malloc(sizeof(Symbol));
-	new_symbol->id = new_id;
-	strcpy(new_symbol->name,name);
-	tail->next = new_symbol;
-	tail = new_symbol;
-}
-/* Dumps all entries of the symbol table. returns index of the entry. */
-void dump(){	
-	Symbol* iter = head->next;
-	while(iter != NULL){
-		printf("%d: %s\n",iter->id, iter->name);
-		iter = iter->next;
-	}
+int token_mapping(string text){
+    if(!token_inited)
+        init_token_map();
+    return token_map[text];
 }
 
 /* define marco */
@@ -67,6 +59,12 @@ void dump(){
 		strcat(lineBuf,text)\
 		)
 #define TOKEN(type) ({\
-		if(state == NormalState)\
-			printf("<%s: %s>\n",type,yytext);\
-		})\
+		/*printf("<%s: %s>\n",type,yytext);*/\
+		})
+#define RETURN_TOKEN(text) ({\
+        string std_text(text);\
+        return token_mapping(std_text);\
+        })
+#define RETURN_CHAR(c) ({\
+        return c;\
+        })\

@@ -1,0 +1,4 @@
+1.用c++把symbol table重新寫過
+2.include y.tab.hpp
+3.針對每個token，把值return給parse
+4.把symbol insert的工作交給parser（原本是在scanner insert）
