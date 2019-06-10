@@ -20,7 +20,7 @@ invokestatic int Example.add(int, int)
 putstatic int Example.c
 L_0:
 getstatic int Example.c
-sipush 10
+sipush 0
 isub
 ifgt L_2
 iconst_0
@@ -30,9 +30,13 @@ iconst_1
 L_3:
 iconst_0
 ifeq L_1
+getstatic int Example.c
+sipush 1
+isub
+putstatic int Example.c
 getstatic java.io.PrintStream java.lang.System.out
 getstatic int Example.c
-invokevirtual void java.io.PrintStream.print(int)
+invokevirtual void java.io.PrintStream.println(int)
 goto L_0
 L_1:
 getstatic java.io.PrintStream java.lang.System.out
